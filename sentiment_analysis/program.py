@@ -6,8 +6,9 @@ import chardet
 def analyze_sentiment(text):
     """Analyze sentiment of a given text using TextBlob."""
     analysis = TextBlob(text)
-    score = analysis.sentiment.polarity  # Returns a score between -1 (negative) and 1 (positive)
-
+    return analysis.sentiment.polarity  # Returns a score between -1 (negative) and 1 (positive)
+    
+def output_message(score):
     if score > 0:
         return "Positive"
     elif score < 0:
@@ -17,8 +18,8 @@ def analyze_sentiment(text):
 
 def main():
     """Reads input CSV from a predefined directory, performs sentiment analysis, and saves results."""
-    input_dir = r"C:\Users\danie\Documents\College\SJSU\Spring 2025\CMPE 131\ai_based_sentiment_analysis"
-    output_dir = r"C:\Users\danie\Documents\College\SJSU\Spring 2025\CMPE 131\ai_based_sentiment_analysis"
+    input_dir = r"C:\Users\danie\Documents\College\SJSU\Spring 2025\CMPE 131\Assignments\sentiment_analysis"
+    output_dir = r"C:\Users\danie\Documents\College\SJSU\Spring 2025\CMPE 131\Assignments\sentiment_analysis"
     input_csv = os.path.join(input_dir, "test.csv")
     output_csv = os.path.join(output_dir, "output.csv")
     
@@ -48,9 +49,13 @@ def main():
         print(f"Error: {e}")
 
 # Prints the sentiment message based on sentiment score
-print(analyze_sentiment("Despise"))
-print(analyze_sentiment("Lively"))
-print(analyze_sentiment("Bland"))
+score1 = analyze_sentiment("Despise")
+score2 = analyze_sentiment("Lively")
+score3 = analyze_sentiment("Bland")
+
+print(output_message(score1))
+print(output_message(score2))
+print(output_message(score3))
 
 # Calling main() will analyze the sentiments from the given dataset input "test.csv" and output the results in a new dataset
-#main()
+main()
